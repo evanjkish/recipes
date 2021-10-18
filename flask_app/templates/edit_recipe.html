@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Recipe</title>
+</head>
+<body>
+
+    <form action="/update/recipe", method="post">
+    <h2>Edit Recipe</h2>
+    {% with messages = get_flashed_messages(category_filter=['recipe']) %}
+        {% if messages %}
+            {% for message in messages %}
+            <p>{{message}}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+        <input type="hidden" name="id" value="{{edit.id}}">
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="name" value="{{edit.name}}">
+            <label for="description">Description:</label>
+            <textarea name="description" id="description" cols="30" rows="5">{{edit.description}}</textarea>
+            <label for="instruction">Instructions:</label>
+            <textarea name="instruction" id="instruction" cols="30" rows="5">{{edit.instruction}}</textarea>
+
+            <label for="date_made">Date Made:</label>
+            <input type="date" name="date_made" id="date_made" value="{{edit.date_made.strftime('%Y-%m-%d')}}">
+            <label for="under_thirty">Under 30 Minutes?</label>
+            <input type="radio" name="under_thirty" value="0">
+            <label for="0">No</label>
+            <input type="radio" name="under_thirty" value="1">
+            <label for="1">Yes</label>
+
+            <input type="submit" value="Edit Recipe">
+
+
+
+
+        </form>
+</body>
+</html>
